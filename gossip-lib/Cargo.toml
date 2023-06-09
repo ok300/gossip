@@ -59,6 +59,7 @@ mime = "0.3"
 nostr-types = { git = "https://github.com/mikedilger/nostr-types", rev = "661273cfaf8ab164d8ad09959d4194e3ace05fff", features = [ "speedy" ] }
 parking_lot = "0.12"
 paste = "1.0"
+powpub = { git = "https://oak-node.net/cgit/powpub.git", rev = "90824739ad59083e417bd0a9fb7484e7a7745ed3", features = [ "client-lnaddress" ] }
 rand = "0.8"
 regex = "1.8"
 reqwest = { version = "0.11", default-features=false, features = ["brotli", "deflate", "gzip", "json"] }

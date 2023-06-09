@@ -177,6 +177,9 @@ impl Overlord {
         // Start periodic tasks in people manager (after signer)
         crate::people::People::start();
 
+        // Start PoW Pub provider
+        crate::powpub_provider::start();
+
         // Initialize the relay picker
         GLOBALS.relay_picker.init().await?;
 
