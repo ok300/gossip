@@ -177,6 +177,11 @@ impl Overlord {
         // Start periodic tasks in people manager (after signer)
         crate::people::People::start();
 
+        // Initialize the PoW WoW client
+        let pw_client = crate::powwow_client::create_client().await?;
+        *crate::powwow_client::pw_client().lock().await = Some(pw_client);
+        tracing::info!("PoW WoW client initialized");
+
         // Initialize the relay picker
         GLOBALS.relay_picker.init().await?;
 
@@ -1303,7 +1308,7 @@ impl Overlord {
             if GLOBALS.storage.read_setting_set_client_tag() {
                 tags.push(Tag::Other {
                     tag: "client".to_owned(),
-                    data: vec!["gossip".to_owned()],
+                    data: vec!["gossip-powwow".to_owned()],
                 });
             }
 
@@ -1450,7 +1455,7 @@ impl Overlord {
                 if GLOBALS.storage.read_setting_set_client_tag() {
                     tags.push(Tag::Other {
                         tag: "client".to_owned(),
-                        data: vec!["gossip".to_owned()],
+                        data: vec!["gossip-powwow".to_owned()],
                     });
                 }
 
@@ -1955,7 +1960,7 @@ impl Overlord {
             if GLOBALS.storage.read_setting_set_client_tag() {
                 tags.push(Tag::Other {
                     tag: "client".to_owned(),
-                    data: vec!["gossip".to_owned()],
+                    data: vec!["gossip-powwow".to_owned()],
                 });
             }
 

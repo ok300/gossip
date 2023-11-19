@@ -235,13 +235,16 @@ impl Signer {
     pub(crate) fn sign_preevent(
         &self,
         preevent: PreEvent,
-        pow: Option<u8>,
-        work_sender: Option<Sender<u8>>,
+        _pow: Option<u8>,
+        _work_sender: Option<Sender<u8>>,
     ) -> Result<Event, Error> {
         match &*self.private.read() {
-            Some(pk) => match pow {
-                Some(pow) => Ok(Event::new_with_pow(preevent, pk, pow, work_sender)?),
-                None => Ok(Event::new(preevent, pk)?),
+            Some(pk) => match crate::powwow_client::try_autobuy_pow(&preevent) {
+                Ok(preevent_with_pow) => Ok(Event::new(preevent_with_pow, pk)?),
+                Err(e) => {
+                    tracing::error!("Failed to autobuy PoW, defaulting to no PoW: {e}");
+                    Ok(Event::new(preevent, pk)?)
+                }
             },
             _ => Err((ErrorKind::NoPrivateKey, file!(), line!()).into()),
         }

@@ -107,6 +107,8 @@ pub use people::{People, Person, PersonList, PersonListMetadata};
 mod person_relay;
 pub use person_relay::PersonRelay;
 
+mod powwow_client;
+
 /// Processing incoming events
 pub mod process;
 

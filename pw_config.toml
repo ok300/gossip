@@ -1,0 +1,30 @@
+# Default list of relays used to find and coordinate with miners
+relays = [
+    "wss://nostr.einundzwanzig.space",
+    "wss://nostr-pub.wellorder.net",
+    "wss://relay.nostr.band",
+    "wss://r.v0l.io",
+    "wss://nostr.lu.ke",
+]
+
+# A secret key for this PoW WoW client's nostr identity. Can be in hex or nsec format.
+# If not set, a new one will be temporarily created on every run. However in that case, you cannot accumulate reputation.
+# To generate a new key, you can use `openssl rand -hex 32`
+#sk = "..."
+
+# Default values for buying PoW
+# Unless explicitly set otherwise when buying PoW, the client will default to these values
+default_difficulty = 20
+default_timeframe_sec = 5
+default_price_sats = 500
+
+# Source of LN funds (enable and configure one)
+[ln]
+
+# LND
+#lnd.lnd_rest_api_url = "https://lnd:port"
+#lnd.lnd_macaroon_path = "/path/to/lnd/admin.macaroon"
+#lnd.lnd_cert_path = "/path/to/lnd/tls.cert"
+
+# NWC
+#nwc.nwc_connection_string = "nostr+walletconnect://..."

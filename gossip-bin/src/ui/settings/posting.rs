@@ -15,7 +15,7 @@ pub(super) fn update(app: &mut GossipUi, _ctx: &Context, _frame: &mut eframe::Fr
 
     ui.checkbox(
         &mut app.settings.set_client_tag,
-        "Add tag [\"client\",\"gossip\"] to posts",
+        "Add tag [\"client\",\"gossip-powwow\"] to posts",
     )
     .on_hover_text("Takes effect immediately.");
 
